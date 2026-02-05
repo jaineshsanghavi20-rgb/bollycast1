@@ -132,9 +132,9 @@ if(sessionStorage.getItem("producerLoggedIn")!=="true"){
 </select>
 
 <select class="form-select w-auto" id="statusFilter" onchange="render()">
-    <option value="All">All Supervisor Status</option>
-    <option value="Approved">Supervisor Approved</option>
-    <option value="Rejected">Supervisor Rejected</option>
+    <option value="All">All Verrifier Status</option>
+    <option value="Approved">Verrifier Approved</option>
+    <option value="Rejected">Verrifier Rejected</option>
     <option value="Processing">Under Processing</option>
 </select>
 </div>
@@ -233,11 +233,11 @@ function render(){
         if(currentTab==="main" && c.final!=="Processing") return;
 
         if(typeF!=="All" && c.type!==typeF) return;
-        if(statusF!=="All" && c.supervisor!==statusF) return;
+        if(statusF!=="All" && c.Verrifier!==statusF) return;
 
         let badge=`badge-processing`;
-        if(c.supervisor==="Approved") badge="badge-approved";
-        if(c.supervisor==="Rejected") badge="badge-rejected";
+        if(c.Verrifier==="Approved") badge="badge-approved";
+        if(c.Verrifier==="Rejected") badge="badge-rejected";
 
         list.innerHTML+=`
         <div class="app-card">
@@ -246,7 +246,7 @@ function render(){
             <p class="small-text">📍 ${c.city} | 💰 ₹${c.salary}</p>
 
             <span class="badge ${badge} mb-2">
-                Supervisor ${c.supervisor}
+                Verrifier ${c.Verrifier}
             </span>
             ${
 c.video ? `
@@ -269,10 +269,10 @@ c.video ? `
             <br><br>
 
             ${
-            c.supervisor==="Approved" && c.final==="Processing"
+            c.Verrifier==="Approved" && c.final==="Processing"
             ? `
             ${
-c.supervisor==="Approved" && c.final==="Processing"
+c.Verrifier==="Approved" && c.final==="Processing"
 ? `
 <button class="btn btn-accept btn-sm me-2"
         onclick="openProfile(${i})">
@@ -323,8 +323,8 @@ function openProfile(i){
     const c = candidates[i];
 
     // safety: sirf supervisor approved
-    if(c.supervisor !== "Approved"){
-        alert("Profile can be viewed only after Supervisor Approval");
+    if(c.Verrifier !== "Approved"){
+        alert("Profile can be viewed only after Verrifier Approval");
         return;
     }
 
