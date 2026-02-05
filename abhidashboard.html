@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST | Artist Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+
+<style>
+body{
+    background:#0b0b0b;
+    color:#fff;
+}
+.navbar{ background:#000; }
+.brand-text{
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#bdbdbd;
+}
+.sidebar{
+    background:#111;
+    min-height:100vh;
+    padding:30px 20px;
+}
+.sidebar a{
+    display:block;
+    color:#ccc;
+    padding:12px 0;
+    text-decoration:none;
+}
+.sidebar a:hover,
+.sidebar a.active{
+    color:#f5c518;
+}
+.job-card{
+    background:#161616;
+    border-radius:18px;
+    padding:25px;
+    margin-bottom:25px;
+}
+.job-card h5{ color:#f5c518; }
+.apply-box{
+    background:#111;
+    border-radius:18px;
+    padding:30px;
+    margin-top:20px;
+}
+.form-control{
+    background:#0f0f0f;
+    border:1px solid #333;
+    color:#fff;
+}
+.form-control:focus{
+    border-color:#f5c518;
+    box-shadow:none;
+}
+.btn-gold{
+    background:#f5c518;
+    color:#000;
+    font-weight:600;
+}
+.btn-gold:hover{
+    background:#d4aa17;
+}
+.small-text{
+    color:#aaa;
+    font-size:14px;
+}
+/* 🔍 FILTER DROPDOWN DARK */
+.form-select{
+    background-color:#0f0f0f;
+    color:#fff;
+    border:1px solid #333;
+}
+
+.form-select:focus{
+    background-color:#0f0f0f;
+    color:#fff;
+    border-color:#f5c518;
+    box-shadow:none;
+}
+
+/* Dropdown arrow white */
+.form-select option{
+    background:#0f0f0f;
+    color:#fff;
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark">
+<div class="container-fluid d-flex justify-content-between align-items-center">
+    <div>
+        <span class="navbar-brand ms-3 me-auto bollycast-text">
+  <span style="color:#fff;">BOLLY</span><span style="color:#f5c518;">CAST</span>
+</span>
+
+        <span class="small-text ms-2">Artist Dashboard</span>
+    </div>
+
+    <a href="notifications.html" class="text-decoration-none">
+        <i class="fa-solid fa-bell text-light fs-5"></i>
+    </a>
+</div>
+</nav>
+
+<div class="container-fluid">
+<div class="row">
+
+<!-- SIDEBAR -->
+<div class="col-md-3 sidebar">
+    <a href="abhidashboard.html" class="active">
+        <i class="fa-solid fa-briefcase"></i> Available Projectss
+    </a>
+    <a href="abhimy-auditions.html">
+        <i class="fa-solid fa-video"></i> My Auditions
+    </a>
+    <a href="abhiprofile.html">
+        <i class="fa-solid fa-user"></i> My Profile
+    </a>
+    <a href="index.html">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
+</div>
+
+<!-- MAIN -->
+<div class="col-md-9 p-4">
+
+<h3 class="mb-4">Jobs Matching Your Interest</h3>
+<!-- 🔍 FILTER -->
+<div class="row mb-4">
+    <div class="col-md-4">
+        <select class="form-select" id="typeFilter" onchange="filterJobs()">
+            <option value="All">All Types</option>
+            <option value="Web Series">Web Series</option>
+            <option value="Advertisement">Advertisement</option>
+        </select>
+    </div>
+
+    <div class="col-md-4">
+        <select class="form-select" id="locationFilter" onchange="filterJobs()">
+            <option value="All">All Locations</option>
+            <option value="Mumbai">Mumbai</option>
+            <option value="Ahmedabad">Ahmedabad</option>
+        </select>
+    </div>
+</div>
+
+
+<!-- JOB 1 -->
+
+<div class="job-card" data-type="Web Series" data-location="Mumbai"  data-salary="50000">
+
+<h5>Lead Actor – Web Series</h5>
+<p class="small-text">Producer: XYZ Productions</p>
+<p>Looking for a male actor (age 20–30) for a drama web series.</p>
+
+<div class="row">
+    <div class="col-md-4"><strong>Budget:</strong> ₹50,000</div>
+    <div class="col-md-4"><strong>Location:</strong> Mumbai</div>
+    <div class="col-md-4"><strong>Type:</strong> Web Series</div>
+    <div class="mt-2 small-text commission-box"></div>
+
+</div>
+
+<button class="btn btn-gold btn-sm mt-3"
+data-bs-toggle="collapse"
+data-bs-target="#apply1">
+Apply Now
+</button>
+
+<div class="collapse apply-box mt-3" id="apply1">
+<h6 class="mb-3">Apply for this Role</h6>
+
+<label class="small-text mb-2">Upload Audition Video</label>
+<input type="file" class="form-control mb-3">
+
+<button class="btn btn-gold"
+onclick="submitApplication(
+'Lead Actor – Web Series',
+'XYZ Productions',
+'₹50,000',
+'Mumbai',
+'Web Series'
+)">
+Submit Application
+</button>
+</div>
+</div>
+
+<!-- JOB 2 -->
+<div class="job-card" data-type="Advertisement" data-location="Ahmedabad"  data-salary="20000">
+
+<h5>Supporting Role – Advertisement</h5>
+<p class="small-text">Producer: ABC Studios</p>
+<p>Energetic actor required for advertisement shoot.</p>
+
+<div class="row">
+    <div class="col-md-4"><strong>Budget:</strong> ₹20,000</div>
+    <div class="col-md-4"><strong>Location:</strong> Ahmedabad</div>
+    <div class="col-md-4"><strong>Type:</strong> Advertisement</div>
+    <div class="mt-2 small-text commission-box"></div>
+
+</div>
+
+<button class="btn btn-gold btn-sm mt-3"
+data-bs-toggle="collapse"
+data-bs-target="#apply2">
+Apply Now
+</button>
+
+<div class="collapse apply-box mt-3" id="apply2">
+<h6 class="mb-3">Apply for this Role</h6>
+
+<label class="small-text mb-2">Upload Audition Video</label>
+<input type="file" class="form-control mb-3">
+
+<button class="btn btn-gold"
+onclick="submitApplication(
+'Supporting Role – Advertisement',
+'ABC Studios',
+'₹20,000',
+'Ahmedabad',
+'Advertisement'
+)">
+Submit Application
+</button>
+</div>
+</div>
+<!-- JOB 2 -->
+<div class="job-card" data-type="Advertisement" data-location="Ahmedabad"  data-salary="20000">
+
+<h5>Supporting Role – Advertisement</h5>
+<p class="small-text">Producer: ABC Studios</p>
+<p>Energetic actor required for advertisement shoot.</p>
+
+<div class="row">
+    <div class="col-md-4"><strong>Budget:</strong> ₹20,000</div>
+    <div class="col-md-4"><strong>Location:</strong> Ahmedabad</div>
+    <div class="col-md-4"><strong>Type:</strong> Advertisement</div>
+    <div class="mt-2 small-text commission-box"></div>
+
+</div>
+
+<button class="btn btn-gold btn-sm mt-3"
+data-bs-toggle="collapse"
+data-bs-target="#apply2">
+Apply Now
+</button>
+
+<div class="collapse apply-box mt-3" id="apply2">
+<h6 class="mb-3">Apply for this Role</h6>
+
+<label class="small-text mb-2">Upload Audition Video</label>
+<input type="file" class="form-control mb-3">
+
+<button class="btn btn-gold"
+onclick="submitApplication(
+'Supporting Role – Advertisement',
+'ABC Studios',
+'₹20,000',
+'Ahmedabad',
+'Advertisement'
+)">
+Submit Application
+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<script>
+function submitApplication(role, producer, salary, location, type){
+
+    /* 🔹 USER → MY AUDITIONS */
+    let myAuditions =
+        JSON.parse(localStorage.getItem("myAuditions")) || [];
+
+    myAuditions.push({
+        role,
+        producer,
+        salary,
+        location,
+        type,
+        status: "Applied",
+        appliedOn: new Date().toLocaleString()
+    });
+
+    localStorage.setItem(
+        "myAuditions",
+        JSON.stringify(myAuditions)
+    );
+
+    /* 🔹 PRODUCER → APPLICATION LIST */
+    let producerApps =
+        JSON.parse(localStorage.getItem("producerApplications")) || [];
+
+    producerApps.push({
+        applicantName: "Demo User",
+        role,
+        producer,
+        salary,
+        location,
+        type,
+        status: "Pending",
+        appliedOn: new Date().toLocaleString()
+    });
+
+    localStorage.setItem(
+        "producerApplications",
+        JSON.stringify(producerApps)
+    );
+
+    /* 🔹 USER NOTIFICATION */
+    let notifications =
+        JSON.parse(localStorage.getItem("userNotifications")) || [];
+
+    notifications.unshift({
+        title: "✅ Application Submitted",
+        message: `Thanks for applying for ${role}. We will notify you soon.`,
+        time: new Date().toLocaleString()
+    });
+
+    localStorage.setItem(
+        "userNotifications",
+        JSON.stringify(notifications)
+    );
+
+    /* 🔹 MESSAGE */
+    alert("Thanks for your application! We’ll notify you soon.");
+}
+
+function filterJobs(){
+    const type = document.getElementById("typeFilter").value;
+    const location = document.getElementById("locationFilter").value;
+
+    document.querySelectorAll(".job-card").forEach(card => {
+        const cardType = card.getAttribute("data-type");
+        const cardLocation = card.getAttribute("data-location");
+
+        let show = true;
+
+        if(type !== "All" && cardType !== type) show = false;
+        if(location !== "All" && cardLocation !== location) show = false;
+
+        card.style.display = show ? "block" : "none";
+    });
+}
+
+function calculateCommission(){
+    document.querySelectorAll(".job-card").forEach(card => {
+        const salary = Number(card.getAttribute("data-salary"));
+        if(!salary) return;
+
+        const commission = Math.round(salary * 0.25);
+        const finalAmount = salary - commission;
+
+        const box = card.querySelector(".commission-box");
+        if(box){
+            box.innerHTML = `
+                <div class="mt-2 p-2" style="background:#111;border-left:3px solid #f5c518;border-radius:6px;">
+                    <div><strong>BOLLYCAST Commission (25%):</strong> ₹${commission}</div>
+                    <div><strong>You receive:</strong> ₹${finalAmount}</div>
+                </div>
+            `;
+        }
+    });
+}
+
+/* Page load pe auto calculate */
+calculateCommission();
+</script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

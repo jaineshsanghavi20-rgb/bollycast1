@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST | Secure Payment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+body{
+    background:#0b0b0b;
+    color:#fff;
+}
+
+/* CARD */
+.pay-card{
+    background:#161616;
+    border-radius:20px;
+    padding:35px;
+    box-shadow:0 0 30px rgba(0,0,0,0.8);
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+
+/* OPTION */
+.pay-option{
+    background:#111;
+    border-radius:14px;
+    padding:18px 20px;
+    margin-bottom:15px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    cursor:pointer;
+    transition:0.3s;
+}
+.pay-option:hover{
+    background:#1c1c1c;
+    box-shadow:0 0 15px rgba(245,197,24,0.25);
+}
+
+.pay-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+.pay-icon{
+    font-size:26px;
+    color:#f5c518;
+}
+
+/* BUTTON */
+.btn-gold{
+    background:#f5c518;
+    color:#000;
+    font-weight:700;
+    height:48px;
+}
+
+/* HEADER */
+.secure{
+    font-size:14px;
+    color:#aaa;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container d-flex justify-content-center align-items-center" style="min-height:100vh;">
+<div class="col-md-6 col-lg-5">
+
+<div class="pay-card">
+
+<h3 class="text-center mb-1">Secure Payment</h3>
+<p class="text-center secure mb-4">
+<i class="fa-solid fa-lock"></i>
+256-bit SSL Encrypted
+</p>
+
+<!-- AMOUNT -->
+<div class="alert alert-dark text-center">
+    <strong>Amount to Pay:</strong>
+    <span class="text-warning fw-bold">₹2,999</span>
+</div>
+
+<!-- OPTIONS -->
+
+<div class="pay-option">
+    <div class="pay-left">
+        <i class="fa-brands fa-google-pay pay-icon"></i>
+        <div>
+            <strong>UPI</strong>
+            <div class="small text-muted">Google Pay / PhonePe / Paytm</div>
+        </div>
+    </div>
+    <i class="fa-solid fa-chevron-right"></i>
+</div>
+
+<div class="pay-option">
+    <div class="pay-left">
+        <i class="fa-solid fa-credit-card pay-icon"></i>
+        <div>
+            <strong>Debit / Credit Card</strong>
+            <div class="small text-muted">Visa / Mastercard / RuPay</div>
+        </div>
+    </div>
+    <i class="fa-solid fa-chevron-right"></i>
+</div>
+
+<div class="pay-option">
+    <div class="pay-left">
+        <i class="fa-solid fa-building-columns pay-icon"></i>
+        <div>
+            <strong>Net Banking</strong>
+            <div class="small text-muted">All major banks supported</div>
+        </div>
+    </div>
+    <i class="fa-solid fa-chevron-right"></i>
+</div>
+
+<div class="pay-option">
+    <div class="pay-left">
+        <i class="fa-solid fa-wallet pay-icon"></i>
+        <div>
+            <strong>Wallet</strong>
+            <div class="small text-muted">Paytm / Amazon Pay</div>
+        </div>
+    </div>
+    <i class="fa-solid fa-chevron-right"></i>
+</div>
+
+<button class="btn btn-gold w-100 mt-3" onclick="paySuccess('Demo')">
+    Complete Payment
+</button>
+
+<p class="text-center small-text mt-3">
+This is a demo payment screen for presentation purposes.
+</p>
+
+</div>
+
+</div>
+</div>
+
+<script>
+function paySuccess(method){
+    alert(
+        "Payment Successful ✔️\n\n" +
+        "Payment Method: " + method + "\n" +
+        "Transaction ID: TXN" + Math.floor(Math.random()*1000000)
+    );
+
+    window.location.href = "producer-register.html?paid=true";
+}
+</script>
+
+</body>
+</html>

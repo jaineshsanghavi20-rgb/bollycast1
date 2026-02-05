@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST | Privacy & Security</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+body{
+    background:#0b0b0b;
+    color:#fff;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#000;
+}
+.brand-text{
+    font-size:26px;
+    font-weight:700;
+    color:#bdbdbd;
+}
+
+/* BACK STRIP */
+.back-strip{
+    background:#111;
+    padding:12px 25px;
+    border-bottom:1px solid #222;
+}
+.back-strip a{
+    color:#f5c518;
+    text-decoration:none;
+    font-weight:600;
+}
+.back-strip a:hover{
+    color:#fff;
+}
+
+/* CARD */
+.sec-card{
+    background:#161616;
+    border-radius:18px;
+    padding:30px;
+    margin-bottom:30px;
+}
+
+/* INPUT */
+.form-control{
+    background:#0f0f0f;
+    border:1px solid #333;
+    color:#fff;
+}
+.form-control:focus{
+    border-color:#f5c518;
+    box-shadow:none;
+}
+
+/* BUTTON */
+.btn-gold{
+    background:#f5c518;
+    color:#000;
+    font-weight:600;
+}
+.btn-gold:hover{
+    background:#d4aa17;
+}
+
+.small-text{
+    color:#aaa;
+    font-size:14px;
+}
+
+/* INFO LIST */
+.info-list li{
+    margin-bottom:10px;
+    color:#ccc;
+}
+.info-list i{
+    color:#f5c518;
+    margin-right:8px;
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark">
+<div class="container-fluid">
+    <span class="navbar-brand ms-3 me-auto bollycast-text">
+  <span style="color:#fff;">BOLLY</span><span style="color:#f5c518;">CAST</span>
+</span>
+
+    <span class="small-text">Privacy & Security</span>
+</div>
+</nav>
+
+<!-- BACK -->
+<div class="back-strip">
+    <a href="ayushprofile.html">
+        <i class="fa-solid fa-arrow-left me-2"></i>
+        Back to Profile
+    </a>
+</div>
+
+<div class="container mt-4 mb-5">
+
+<!-- CHANGE PASSWORD -->
+<div class="sec-card">
+    <h4 class="mb-3">
+        <i class="fa-solid fa-key me-2"></i>
+        Change Password
+    </h4>
+
+    <div class="row g-3">
+        <div class="col-md-4">
+            <input type="password" class="form-control" placeholder="Current Password" required>
+        </div>
+        <div class="col-md-4">
+            <input type="password" class="form-control" placeholder="New Password" required>
+        </div>
+        <div class="col-md-4">
+            <input type="password" class="form-control" placeholder="Confirm New Password" required>
+        </div>
+    </div>
+
+    <button class="btn btn-gold mt-3">
+        Update Password
+    </button>
+
+    <p class="small-text mt-2">
+        Make sure your password is strong and confidential.
+    </p>
+</div>
+
+<!-- PRIVACY INFO -->
+<div class="sec-card">
+    <h4 class="mb-3">
+        <i class="fa-solid fa-shield-halved me-2"></i>
+        Privacy Protection
+    </h4>
+
+    <ul class="info-list">
+        <li>
+            <i class="fa-solid fa-check-circle"></i>
+            Your personal information is securely stored and encrypted.
+        </li>
+        <li>
+            <i class="fa-solid fa-check-circle"></i>
+            Documents like Aadhaar & PAN are used only for verification.
+        </li>
+        <li>
+            <i class="fa-solid fa-check-circle"></i>
+            Your audition videos are visible only to verified producers.
+        </li>
+        <li>
+            <i class="fa-solid fa-check-circle"></i>
+            We never share your data with third-party agencies.
+        </li>
+    </ul>
+</div>
+
+<!-- TERMS -->
+<div class="sec-card">
+    <h4 class="mb-3">
+        <i class="fa-solid fa-file-contract me-2"></i>
+        Terms & Conditions
+    </h4>
+
+    <p class="small-text">
+        By using BOLLYCAST, you agree to provide genuine information and follow fair casting practices.
+        Any misuse, fake profiles, or misleading content may result in account suspension.
+    </p>
+
+    <p class="small-text">
+        BOLLYCAST acts as a transparent platform between artists and producers and does not guarantee selection.
+        Commission is deducted only after successful selection.
+    </p>
+
+    <p class="small-text">
+        Your continued use of this platform indicates acceptance of our privacy policies and security guidelines.
+    </p>
+    <p class="small-text mt-3">
+    <i class="fa-solid fa-percent me-1" style="color:#f5c518;"></i>
+    BOLLYCAST charges a <strong>25% commission only after successful selection</strong>.
+    No upfront or registration fees are applied.
+</p>
+
+</div>
+
+</div>
+
+</body>
+</html>

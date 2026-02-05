@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST | Production KYC Verification</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+<style>
+body{
+    background:#0b0b0b;
+    color:#fff;
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+.back-arrow{
+    position:fixed;
+    top:90px;
+    left:30px;
+    font-size:22px;
+    color:#bbb;
+    cursor:pointer;
+    z-index:9999;
+}
+.back-arrow:hover{
+    color:#f5c518;
+}
+/* NAVBAR */
+.navbar{
+    background:#000;
+}
+.brand-text{
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#f8f7f2;
+}
+
+/* CONTAINER */
+.kyc-wrapper{
+    max-width:900px;
+    margin:110px auto 60px;
+}
+
+/* CARD */
+.kyc-card{
+    background:#161616;
+    border-radius:20px;
+    padding:35px;
+}
+
+/* STEPS */
+.step{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:18px;
+}
+.step span{
+    width:34px;
+    height:34px;
+    border-radius:50%;
+    background:#f5c518;
+    color:#000;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.step p{
+    margin:0;
+    color:#ddd;
+}
+
+/* FORM */
+.form-label{ color:#bbb; }
+.form-control, .form-select{
+    background:#0f0f0f;
+    border:1px solid #333;
+    color:#fff;
+}
+.form-control:focus, .form-select:focus{
+    border-color:#f5c518;
+    box-shadow:none;
+    background:#0f0f0f;
+    color:#fff;
+}
+
+/* UPLOAD */
+.upload-box{
+    border:2px dashed #333;
+    border-radius:16px;
+    padding:25px;
+    text-align:center;
+    color:#aaa;
+}
+.upload-box i{
+    font-size:30px;
+    color:#f5c518;
+}
+
+/* BUTTON */
+.btn-gold{
+    background:#f5c518;
+    color:#000;
+    font-weight:600;
+    border:none;
+}
+.btn-gold:hover{ background:#d4aa17; }
+
+/* STATUS */
+.status{
+    display:none;
+    background:#111;
+    border-left:4px solid #f5c518;
+    padding:15px;
+    margin-top:25px;
+    border-radius:8px;
+    color:#ccc;
+}
+</style>
+</head>
+
+<body>
+
+<nav class="navbar navbar-dark fixed-top px-4">
+    <span class="navbar-brand ms-3 me-auto bollycast-text">
+  <span style="color:#fff;">BOLLY</span><span style="color:#f5c518;">CAST</span>
+</span>
+
+    <span class="text-muted">Production KYC Verification</span>
+</nav>
+<i class="fa-solid fa-arrow-left back-arrow" onclick="goBack()"></i>
+<div class="kyc-wrapper">
+<div class="kyc-card">
+
+    <h3 class="mb-2">🏢 Production House KYC</h3>
+    <p class="text-muted mb-4">
+        Complete KYC to unlock auditions, artist shortlisting and payments.
+    </p>
+
+    <!-- STEPS -->
+    <div class="mb-4">
+        <div class="step">
+            <span>1</span><p>Business Details</p>
+        </div>
+        <div class="step">
+            <span>2</span><p>Authorized Person Details</p>
+        </div>
+        <div class="step">
+            <span>3</span><p>Upload Legal Documents</p>
+        </div>
+        <div class="step">
+            <span>4</span><p>Final Review & Submission</p>
+        </div>
+    </div>
+
+    <form onsubmit="submitKYC(event)">
+
+        <!-- BUSINESS DETAILS -->
+        <h5 class="mb-3">Business Information</h5>
+        <div class="row g-3 mb-4">
+
+            <div class="col-md-6">
+                <label class="form-label">Production House Name</label>
+                <input type="text" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Business Type</label>
+                <select class="form-select" required>
+                    <option value="">Select</option>
+                    <option>Film Production</option>
+                    <option>OTT / Web Series</option>
+                    <option>Advertisement</option>
+                    <option>Music Production</option>
+                </select>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Registered Email</label>
+                <input type="email" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Registered Mobile</label>
+                <input type="tel" class="form-control" required>
+            </div>
+
+            <div class="col-md-12">
+                <label class="form-label">Registered Address</label>
+                <textarea class="form-control" rows="2" required></textarea>
+            </div>
+
+        </div>
+
+        <!-- AUTHORIZED PERSON -->
+        <h5 class="mb-3">Authorized Person Details</h5>
+        <div class="row g-3 mb-4">
+
+            <div class="col-md-6">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Designation</label>
+                <input type="text" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">PAN Number</label>
+                <input type="text" class="form-control" required>
+            </div>
+
+            <div class="col-md-6">
+                <label class="form-label">Aadhaar Number</label>
+                <input type="text" class="form-control" required>
+            </div>
+
+        </div>
+
+        <!-- DOCUMENT UPLOAD -->
+        <h5 class="mb-3">Document Upload</h5>
+        <div class="upload-box mb-4">
+            <i class="fa-solid fa-file-shield mb-2"></i>
+            <p>Upload GST Certificate / CIN / Company Registration</p>
+            <input type="file" class="form-control mt-3" required>
+        </div>
+
+        <!-- SUBMIT -->
+        <div class="text-center">
+            <button class="btn btn-gold px-5 py-2">
+                Submit KYC
+            </button>
+        </div>
+
+    </form>
+
+    <div id="statusBox" class="status">
+        <i class="fa-solid fa-clock me-1"></i>
+        KYC submitted successfully. Verification usually takes 24–48 hours.
+    </div>
+
+</div>
+</div>
+
+<script>
+function submitKYC(e){
+    e.preventDefault();
+    document.getElementById("statusBox").style.display="block";
+    window.scrollTo({ top: document.body.scrollHeight, behavior:"smooth" });
+}
+function goBack(){
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

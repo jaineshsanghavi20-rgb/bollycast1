@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST | Producer Dashboard</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+body{
+    background:#0b0b0b;
+    color:#fff;
+}
+.navbar{background:#000;}
+.brand-text{font-size:26px;font-weight:700;color:#dad8d3;}
+
+.sidebar{
+    background:#111;
+    min-height:100vh;
+    padding:25px;
+}
+.sidebar a{
+    display:block;
+    padding:12px 0;
+    color:#ccc;
+    text-decoration:none;
+}
+.sidebar a.active,
+.sidebar a:hover{color:#f5c518;}
+
+.app-card{
+    background:#161616;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:22px;
+}
+
+.badge-approved{background:#28a745;}
+.badge-rejected{background:#dc3545;}
+.badge-processing{background:#ffc107;color:#000;}
+
+.btn-pay{
+    background:#f5c518;
+    color:#000;
+    font-weight:600;
+}
+.btn-accept{
+    background:#28a745;
+    color:#000;
+    font-weight:600;
+}
+.btn-reject{
+    background:#dc3545;
+    color:#000;
+    font-weight:600;
+}
+
+.small-text{color:#aaa;font-size:14px;}
+
+/* 🔍 FILTER DROPDOWN DARK */
+.form-select{
+    background-color:#0f0f0f;
+    color:#fff;
+    border:1px solid #333;
+}
+
+.form-select:focus{
+    background-color:#0f0f0f;
+    color:#fff;
+    border-color:#f5c518;
+    box-shadow:none;
+}
+
+/* Dropdown arrow white */
+.form-select option{
+    background:#0f0f0f;
+    color:#fff;
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+</style>
+</head>
+
+<body>
+
+<script>
+if(sessionStorage.getItem("producerLoggedIn")!=="true"){
+    window.location.href="producer-login.html";
+}
+</script>
+
+<nav class="navbar navbar-dark px-4">
+<span class="navbar-brand ms-3 me-auto bollycast-text">
+  <span style="color:#fff;">BOLLY</span><span style="color:#f5c518;">CAST</span>
+</span>
+
+<span class="small-text">Producer Panel</span>
+</nav>
+
+<div class="container-fluid">
+<div class="row">
+
+<!-- SIDEBAR -->
+<div class="col-md-3 sidebar">
+    <a href="#" onclick="showTab('application')"><i class="fa-solid fa-users"></i> Applications</a>
+    <a href="#" onclick="showTab('accepted')"><i class="fa-solid fa-check"></i> Accepted</a>
+    <a href="#" onclick="showTab('rejected')"><i class="fa-solid fa-xmark"></i> Rejected</a>
+    <a href="index.html" onclick="sessionStorage.removeItem('producerLoggedIn')">
+        <i class="fa-solid fa-right-from-bracket"></i> Logout
+    </a>
+</div>
+
+<!-- MAIN -->
+<div class="col-md-9 p-4">
+
+<h3 class="mb-3">Applied Candidates</h3>
+
+<!-- FILTERS -->
+<div class="d-flex gap-3 mb-4">
+<select class="form-select w-auto" id="typeFilter" onchange="render()">
+    <option value="All">All Types</option>
+    <option value="Movie">Movie</option>
+    <option value="Web Series">Web Series</option>
+    <option value="Advertisement">Advertisement</option>
+</select>
+
+<select class="form-select w-auto" id="statusFilter" onchange="render()">
+    <option value="All">All Supervisor Status</option>
+    <option value="Approved">Supervisor Approved</option>
+    <option value="Rejected">Supervisor Rejected</option>
+    <option value="Processing">Under Processing</option>
+</select>
+</div>
+
+<div id="list"></div>
+
+</div>
+</div>
+</div>
+
+<script>
+
+ const navType = performance.getEntriesByType("navigation")[0].type;   
+let currentTab="main";
+
+let candidates=
+JSON.parse(localStorage.getItem("producerCandidates")) || [
+{ name:"Neha Verma", role:"Actress", type:"Movie", city:"Delhi", salary:90000, Verrifier:"Approved", paid:false, final:"Processing",id:"neha",video:"neha.mp4"},
+{ name:"Ayush", role:"Actor", type:"Web Series", city:"Mumbai", salary:120000, Verrifier:"Approved", paid:true, final:"Processing",id:"ayush",video:"ayush.mp4"},
+{ name:"Riya Patel", role:"Model", type:"Advertisement", city:"Ahmedabad", salary:20000, Verrifier:"Rejected", paid:false, final:"Processing",id:"riya",video:"riya.mp4"},
+{ name:"Kunal Mehta", role:"Actor", type:"Movie", city:"Pune", salary:70000, Verrifier:"Processing", paid:false, final:"Processing",id:"kunal",video:"kunal.mp4"},
+{ name:"Simran Kaur", role:"Actress", type:"Web Series", city:"Chandigarh", salary:50000, Verrifier:"Approved", paid:false, final:"Processing",id:"simran",video:"simran.mp4"},
+{ name:"Rahul Roy", role:"Actor", type:"Movie", city:"Kolkata", salary:60000, Verrifier:"Rejected", paid:false, final:"Processing",id:"rahul",video:"rahul.mp4"},
+{ name:"Pooja Jain", role:"Model", type:"Advertisement", city:"Jaipur", salary:25000, Verrifier:"Approved", paid:true, final:"Accepted",id:"pooja",video:"pooja.mp4"},
+{ name:"Vikas Malhotra", role:"Actor", type:"Web Series", city:"Delhi", salary:80000, Verrifier:"Processing", paid:false, final:"Processing",id:"vikas",video:"vikas.mp4"},
+{ name:"Anjali Desai", role:"Actress", type:"Movie", city:"Mumbai", salary:95000, Verrifier:"Approved", paid:false, final:"Processing",id:"anjali",video:"anjali.mp4"},
+{ name:"Mohit Singh", role:"Actor", type:"Advertisement", city:"Noida", salary:30000, Verrifier:"Rejected", paid:false, final:"Rejected",id:"mohit",video:"mohit.mp4"},
+
+];
+if(navType === "reload"){
+    candidates = candidates.map(c => {
+        if(c.final === "Accepted" || c.final === "Rejected"){
+            c.final = "Processing";
+        }
+        return c;
+    });
+
+    localStorage.setItem(
+        "producerCandidates",
+        JSON.stringify(candidates)
+    );
+}
+
+function showTab(tab){
+    currentTab=tab;
+    render();
+}
+
+function payCommission(i){
+    candidates[i].paid=true;
+    alert("Commission Paid to BOLLYCAST (30%)");
+    render();
+}
+
+function acceptCandidate(i){
+    if(!candidates[i].paid){
+        alert("Please pay commission first");
+        return;
+    }
+
+    candidates[i].final = "Accepted";
+
+    sendUserNotification(
+        "🎉 You Are Selected!",
+        `Congratulations! You have been selected for ${candidates[i].type} project.
+Salary: ₹${candidates[i].salary}`
+    );
+
+    render();
+}
+
+
+function rejectCandidate(i){
+    candidates[i].final = "Rejected";
+
+    sendUserNotification(
+        "❌ Application Rejected",
+        `Your application for ${candidates[i].type} project has been rejected by the producer.`
+    );
+
+    render();
+}
+
+
+function render(){
+    const list=document.getElementById("list");
+    list.innerHTML="";
+
+    const typeF=document.getElementById("typeFilter").value;
+    const statusF=document.getElementById("statusFilter").value;
+
+    candidates.forEach((c,i)=>{
+
+        if(currentTab==="accepted" && c.final!=="Accepted") return;
+        if(currentTab==="rejected" && c.final!=="Rejected") return;
+        if(currentTab==="main" && c.final!=="Processing") return;
+
+        if(typeF!=="All" && c.type!==typeF) return;
+        if(statusF!=="All" && c.supervisor!==statusF) return;
+
+        let badge=`badge-processing`;
+        if(c.supervisor==="Approved") badge="badge-approved";
+        if(c.supervisor==="Rejected") badge="badge-rejected";
+
+        list.innerHTML+=`
+        <div class="app-card">
+            <h5>${c.name}</h5>
+            <p class="small-text">${c.role} • ${c.type}</p>
+            <p class="small-text">📍 ${c.city} | 💰 ₹${c.salary}</p>
+
+            <span class="badge ${badge} mb-2">
+                Supervisor ${c.supervisor}
+            </span>
+            ${
+c.video ? `
+<div class="mt-3">
+    <video class="w-100 rounded"
+           height="180"
+           src="${c.video}"
+           controls
+           muted
+           preload="metadata">
+    </video>
+</div>
+` : `
+<p class="small-text mt-3">
+<i class="fa-solid fa-video-slash"></i> No preview video
+</p>
+`}
+
+
+            <br><br>
+
+            ${
+            c.supervisor==="Approved" && c.final==="Processing"
+            ? `
+            ${
+c.supervisor==="Approved" && c.final==="Processing"
+? `
+<button class="btn btn-accept btn-sm me-2"
+        onclick="openProfile(${i})">
+    View Profile
+</button>
+<button class="btn btn-reject btn-sm"
+        onclick="rejectCandidate(${i})">
+    Reject
+</button>
+`
+: `<span class="small-text">No action available</span>`
+}
+
+            `
+            : `<span class="small-text">No action available</span>`
+            }
+        </div>
+        `;
+    });
+    localStorage.setItem(
+        "producerCandidates",
+        JSON.stringify(candidates)
+    );
+}
+
+render();
+
+
+
+
+function sendUserNotification(title, message){
+    let notifications =
+        JSON.parse(localStorage.getItem("userNotifications")) || [];
+
+    notifications.unshift({
+        title: title,
+        message: message,
+        time: new Date().toLocaleString()
+    });
+
+    localStorage.setItem(
+        "userNotifications",
+        JSON.stringify(notifications)
+    );
+}
+function openProfile(i){
+
+    const c = candidates[i];
+
+    // safety: sirf supervisor approved
+    if(c.supervisor !== "Approved"){
+        alert("Profile can be viewed only after Supervisor Approval");
+        return;
+    }
+
+    // common data save (future use ke liye)
+    localStorage.setItem(
+        "selectedCandidate",
+        JSON.stringify(c)
+    );
+
+    // 🔥 ID ke hisaab se page open
+    if(c.id === "neha"){
+        window.location.href = "candidate-profile.html";
+    }
+    else if(c.id === "ayush"){
+        window.location.href = "candidate1.html";
+    }
+    else if(c.id === "simran"){
+        window.location.href = "simrancandidate.html";
+    }
+    else if(c.id === "anjali"){
+        window.location.href = "anjalicandidate.html";
+    }
+    else if(c.id === "pooja"){
+        window.location.href = "poojacandidate.html";
+    }
+    else{
+        // fallback (generic profile)
+        window.location.href = "candidate1.html";
+    }
+}
+
+
+
+
+</script>
+
+</body>
+</html>

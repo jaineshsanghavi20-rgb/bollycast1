@@ -1,0 +1,80 @@
+/* =========================
+   GLOBAL MOBILE FIX
+   ========================= */
+html, body{
+    overflow-x: hidden;
+}
+
+/* =========================
+   DASHBOARD / SUPERVISOR
+   ========================= */
+@media (max-width: 900px){
+
+    .wrapper{
+        flex-direction: column;
+        min-height: auto;
+    }
+
+    .sidebar{
+        display: none;
+    }
+
+    .main{
+        padding: 16px;
+        overflow-y: visible;
+    }
+}
+
+/* =========================
+   VIDEO RESPONSIVE
+   ========================= */
+video{
+    max-width: 100%;
+    height: auto;
+}
+
+/* =========================
+   CARD BUTTON STACK
+   ========================= */
+@media (max-width: 768px){
+
+    .card-dark .d-flex{
+        flex-direction: column;
+    }
+
+    .card-dark .btn{
+        width: 100%;
+    }
+}
+
+/* =========================
+   NAVBAR / TOP BAR SAFETY
+   ========================= */
+.navbar{
+    z-index: 1055;
+}
+
+/* allow dropdown to overflow */
+.navbar,
+.navbar .container-fluid{
+    overflow: visible !important;
+}
+
+/* =========================
+   MOBILE DROPDOWN BEHAVIOUR
+   ========================= */
+@media (max-width: 768px){
+
+    .navbar .dropdown-menu{
+        position: static !important;
+        width: 100%;
+        margin-top: 8px;
+        box-shadow: none;
+        background: #111;
+    }
+
+    /* hide dropdown buttons on mobile */
+    .navbar .dropdown{
+        display: none;
+    }
+}

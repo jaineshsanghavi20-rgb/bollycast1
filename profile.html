@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST | My Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+body{
+    background:#0b0b0b;
+    color:#fff;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#000;
+}
+.brand-text{
+    font-size:26px;
+    font-weight:700;
+    color:#bdbdbd;
+}
+
+/* PROFILE WRAPPER */
+.profile-wrapper{
+    background:#161616;
+    border-radius:20px;
+    padding:40px;
+}
+
+/* PROFILE HEADER */
+.profile-header{
+    display:flex;
+    align-items:center;
+    gap:30px;
+    margin-bottom:30px;
+}
+
+.profile-pic{
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#222;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:50px;
+    color:#f5c518;
+}
+
+.verified{
+    color:#1db954;
+    font-size:14px;
+}
+.back-strip{
+    background:#111;
+    padding:12px 25px;
+    border-bottom:1px solid #222;
+}
+.back-strip a{
+    color:#f5c518;
+    text-decoration:none;
+    font-weight:600;
+}
+.back-strip a:hover{
+    color:#fff;
+}
+/* BADGES */
+.badge-box span{
+    background:#222;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+    margin-right:8px;
+    color:#ccc;
+}
+
+/* INFO GRID */
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+    margin-top:25px;
+}
+
+.info-card{
+    background:#111;
+    border-radius:16px;
+    padding:20px;
+}
+.info-card h6{
+    color:#f5c518;
+    margin-bottom:8px;
+}
+
+/* SETTINGS */
+.settings-section{
+    margin-top:50px;
+}
+
+.settings-card{
+    background:#111;
+    border-radius:16px;
+    padding:18px 22px;
+    margin-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+.settings-card:hover{
+    background:#1b1b1b;
+}
+
+.settings-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+.settings-left i{
+    color:#f5c518;
+    font-size:18px;
+}
+
+.small-text{
+    color:#aaa;
+    font-size:14px;
+}
+
+/* BUTTON */
+.btn-gold{
+    background:#f5c518;
+    color:#000;
+    font-weight:600;
+}
+.settings-card{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.settings-card > i{
+    margin-left: auto;
+    color: #888;
+    font-size: 18px;
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark">
+<div class="container-fluid">
+    <span class="navbar-brand ms-3 me-auto bollycast-text">
+  <span style="color:#fff;">BOLLY</span><span style="color:#f5c518;">CAST</span>
+</span>
+
+</div>
+</nav>
+<div class="back-strip">
+    <a href="dashboard.html">
+        <i class="fa-solid fa-arrow-left me-2"></i>
+        Back to Profile
+    </a>
+</div>
+<div class="container mt-5 mb-5">
+<div class="profile-wrapper">
+
+    <!-- PROFILE HEADER -->
+    <div class="profile-header">
+        <div class="profile-pic">
+            <i class="fa-solid fa-user"></i>
+        </div>
+
+        <div>
+            <h3 class="mb-1">
+                Neha
+                <i class="fa-solid fa-circle-check verified"></i>
+            </h3>
+            <p class="small-text mb-1">neha@gmail.com</p>
+            <p class="small-text">Surat, India</p>
+        </div>
+    </div>
+
+    <!-- BADGES -->
+    <div class="badge-box mb-4">
+        <span>Actor</span>
+        <span>Web Series</span>
+        <span>Movies</span>
+        <span>Advertisements</span>
+    </div>
+
+    <!-- INFO -->
+    <div class="info-grid">
+        <div class="info-card">
+    <h6>Wallet Balance</h6>
+    <p>
+        ₹ <span id="walletAmount">•••••</span>
+        <i class="fa-solid fa-eye ms-2"
+           id="toggleWallet"
+           style="cursor:pointer"
+           onclick="toggleWallet()"></i>
+    </p>
+</div>
+
+        <div class="info-card">
+            <h6>Experience</h6>
+            <p>Beginner</p>
+        </div>
+        <div class="info-card">
+            <h6>Documents</h6>
+            <p>Verified (Aadhaar & PAN)</p>
+        </div>
+        <div class="info-card">
+            <h6>Auditions Applied</h6>
+            <p>1 Projects</p>
+        </div>
+    </div>
+
+    <!-- SETTINGS -->
+    <div class="settings-section">
+        <h4 class="mb-4">Settings</h4>
+
+        <!-- ACCOUNT SETTINGS -->
+        <div class="settings-card"
+             onclick="window.location.href='setting.html'">
+            <div class="settings-left">
+                <i class="fa-solid fa-user-gear"></i>
+                <div>
+                    <strong>Account Settings</strong>
+                    <div class="small-text">Update personal information</div>
+                </div>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        <!-- PRIVACY -->
+        <div class="settings-card"
+             onclick="window.location.href='privacy-security.html'">
+            <div class="settings-left">
+                <i class="fa-solid fa-lock"></i>
+                <div>
+                    <strong>Privacy & Security</strong>
+                    <div class="small-text">Password and security options</div>
+                </div>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+        <!-- WALLET -->
+<div class="settings-card"
+     onclick="window.location.href='wallet-verify.html'">
+    <div class="settings-left">
+        <i class="fa-solid fa-wallet"></i>
+        <div>
+            <strong>Wallet</strong>
+            <div class="small-text">
+                 verification
+            </div>
+        </div>
+    </div>
+    <i class="fa-solid fa-chevron-right"></i>
+</div>
+<div class="settings-card"
+     onclick="window.location.href='wallet-balance.html'">
+    <div class="settings-left">
+        <i class="fa-solid fa-wallet"></i>
+        <div>
+            <strong>Wallet-balance</strong>
+            <div class="small-text">
+                Balance & transactions
+            </div>
+        </div>
+    </div>
+   <i class="fa-solid fa-chevron-right"></i>
+</div>
+
+<div class="settings-card"
+     onclick="window.location.href='withdrawal.html'">
+    <div class="settings-left">
+        <i class="fa-solid fa-money-bill-transfer"></i>
+        <div>
+            <strong>Withdraw Funds</strong>
+            <div class="small-text">
+                Transfer money to bank / UPI
+            </div>
+        </div>
+    </div>
+    <i class="fa-solid fa-chevron-right"></i>
+</div>
+
+
+        <!-- NOTIFICATIONS -->
+        <div class="settings-card"
+             onclick="window.location.href='notifications.html'">
+            <div class="settings-left">
+                <i class="fa-solid fa-bell"></i>
+                <div>
+                    <strong>Notifications</strong>
+                    <div class="small-text">Audition and message alerts</div>
+                </div>
+            </div>
+            <i class="fa-solid fa-chevron-right"></i>
+        </div>
+
+        
+
+    </div>
+
+    <!-- ACTION -->
+<!-- ACTION -->
+<div class="d-flex justify-content-end gap-2 mt-4">
+    <button class="btn btn-gold btn-sm">
+        Edit Profile
+    </button>
+
+    <button class="btn btn-outline-danger btn-sm"
+            onclick="logoutUser()">
+        <i class="fa-solid fa-right-from-bracket me-1"></i>
+        Logout
+    </button>
+</div>
+
+</div>
+</div>
+<script>
+let walletVisible = false;
+const actualBalance = 75000; // demo wallet balance
+
+function toggleWallet(){
+    const amount = document.getElementById("walletAmount");
+    const icon = document.getElementById("toggleWallet");
+
+    if(walletVisible){
+        amount.innerText = "•••••";
+        icon.classList.remove("fa-eye-slash");
+        icon.classList.add("fa-eye");
+    }else{
+        amount.innerText = actualBalance.toLocaleString();
+        icon.classList.remove("fa-eye");
+        icon.classList.add("fa-eye-slash");
+    }
+    walletVisible = !walletVisible;
+}
+function logoutUser(){
+    // clear session / local storage if needed
+    localStorage.removeItem("walletVerified");
+    // localStorage.clear(); // agar full reset chahiye
+
+    window.location.href = "index.html";
+}
+
+</script>
+
+</body>
+</html>

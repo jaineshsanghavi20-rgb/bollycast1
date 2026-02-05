@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST | My Auditions</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+body{
+    background:#0b0b0b;
+    color:#fff;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#000;
+}
+.brand-text{
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#bdbdbd;
+}
+
+/* BACK STRIP */
+.back-strip{
+    background:#111;
+    padding:12px 25px;
+    border-bottom:1px solid #222;
+}
+.back-strip a{
+    color:#f5c518;
+    text-decoration:none;
+    font-weight:600;
+}
+.back-strip a:hover{
+    color:#fff;
+}
+
+/* AUDITION CARD */
+.audit-card{
+    background:linear-gradient(145deg,#151515,#1b1b1b);
+    border-radius:20px;
+    padding:26px;
+    margin-bottom:28px;
+    transition:0.35s ease;
+}
+.audit-card:hover{
+    transform:translateY(-6px);
+    box-shadow:0 0 30px rgba(245,197,24,0.35);
+}
+.audit-card h5{
+    color:#f5c518;
+}
+
+/* STATUS */
+.status{
+    padding:6px 16px;
+    border-radius:30px;
+    font-size:13px;
+    font-weight:700;
+}
+.status.Applied{ background:#f5c518; color:#000; }
+.status.Accepted{ background:#1db954; color:#000; }
+.status.Rejected{ background:#ff4d4d; color:#000; }
+
+/* ICON STRIP */
+.icon-strip{
+    margin-top:15px;
+    display:flex;
+    gap:20px;
+    color:#aaa;
+    font-size:14px;
+}
+.icon-strip i{
+    color:#f5c518;
+    margin-right:6px;
+}
+
+/* EMPTY */
+.empty-box{
+    text-align:center;
+    margin-top:120px;
+    color:#777;
+}
+.empty-box i{
+    font-size:70px;
+    margin-bottom:20px;
+    color:#444;
+}
+
+.small-text{
+    color:#aaa;
+    font-size:14px;
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark">
+<div class="container-fluid">
+    <span class="navbar-brand ms-3 me-auto bollycast-text">
+  <span style="color:#fff;">BOLLY</span><span style="color:#f5c518;">CAST</span>
+</span>
+
+    <span class="small-text">My Auditions</span>
+</div>
+</nav>
+
+<!-- BACK TO DASHBOARD (NAVBAR KE NICHE) -->
+<div class="back-strip">
+    <a href="ayushdashboard.html">
+        <i class="fa-solid fa-arrow-left me-2"></i>
+        Back to Dashboard
+    </a>
+</div>
+
+<div class="container mt-4 mb-5">
+
+<h3 class="mb-4">My Applied Auditions</h3>
+
+<div id="auditionList"></div>
+
+<div id="emptyState" class="empty-box d-none">
+    <i class="fa-solid fa-video-slash"></i>
+    <p>You haven’t applied to any auditions yet.</p>
+</div>
+
+</div>
+
+<script>
+function loadAuditions(){
+    const container = document.getElementById("auditionList");
+    const empty = document.getElementById("emptyState");
+
+    let auditions =
+    (JSON.parse(localStorage.getItem("myAuditions")) || [])
+    .slice(-5)
+    .reverse();
+
+
+    container.innerHTML = "";
+
+    if(auditions.length === 0){
+        empty.classList.remove("d-none");
+        return;
+    }
+
+    empty.classList.add("d-none");
+
+    auditions.forEach(a => {
+        container.innerHTML += `
+        <div class="audit-card">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+                <h5>${a.role}</h5>
+                <span class="status ${a.status}">
+                    ${a.status}
+                </span>
+            </div>
+
+            <p class="small-text mb-2">
+                <strong>Producer:</strong> ${a.producer}
+            </p>
+
+            <div class="icon-strip">
+                <div><i class="fa-solid fa-location-dot"></i>${a.location}</div>
+                <div><i class="fa-solid fa-indian-rupee-sign"></i>${a.salary}</div>
+                <div><i class="fa-solid fa-film"></i>${a.type}</div>
+            </div>
+
+            <p class="small-text mt-3">
+                <i class="fa-regular fa-clock"></i>
+                Applied on ${a.appliedOn}
+            </p>
+        </div>
+        `;
+    });
+}
+
+loadAuditions();
+</script>
+
+
+
+</body>
+</html>

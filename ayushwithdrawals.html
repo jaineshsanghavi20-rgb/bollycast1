@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST | Withdraw Funds</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+/* ================= GLOBAL ================= */
+body{
+    background:#000;
+    color:#fff;
+    min-height:100vh;
+    margin:0;
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+
+/* ================= TOP CINEMATIC BAR ================= */
+.top-bar{
+    height:60px;
+    width:100%;
+    background: linear-gradient(to right, #000, #0a0a0a, #000);
+    display:flex;
+    align-items:center;
+    gap:20px;
+    padding:0 26px;
+    box-shadow:0 2px 18px rgba(0,0,0,0.85);
+    position:sticky;
+    top:0;
+    z-index:9999;
+}
+
+.back-btn{
+    font-size:22px;
+    color:#bbb;
+    cursor:pointer;
+    transition:0.3s;
+}
+.back-btn:hover{
+    color:#f5c518;
+}
+
+.brand-title{
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:4px;
+    color:#d4d2cb;
+    text-transform:uppercase;
+    text-shadow:0 0 14px rgba(245,197,24,0.45);
+}
+
+/* ================= LAYOUT ================= */
+.wrapper{
+    display:flex;
+    min-height:calc(100vh - 60px);
+}
+
+/* LEFT */
+.left{
+    flex:1.3;
+    background:
+    linear-gradient(to bottom,rgba(0,0,0,0.75),rgba(0,0,0,0.95)),
+    url("https://images.unsplash.com/photo-1517604931442-7e0c8ed2963c");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    padding:80px;
+}
+
+.left h1{
+    font-size:56px;
+    letter-spacing:6px;
+    color:#f5c518;
+}
+.left p{
+    color:#ccc;
+    font-size:18px;
+    max-width:500px;
+}
+
+/* RIGHT */
+.right{
+    flex:1;
+    background:#0b0b0b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* CARD */
+.card{
+    background:#141414;
+    border-radius:18px;
+    padding:45px;
+    width:100%;
+    max-width:440px;
+}
+
+/* INFO BOX */
+.balance-box{
+    background:#0f0f0f;
+    border-radius:14px;
+    padding:14px 18px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:25px;
+}
+
+/* INPUT */
+.form-control, .form-select{
+    background:#0f0f0f;
+    border:1px solid #333;
+    color:#fff;
+    height:50px;
+}
+.form-control:focus, .form-select:focus{
+    border-color:#f5c518;
+    box-shadow:none;
+}
+
+/* BUTTON */
+.btn-gold{
+    background:#f5c518;
+    color:#000;
+    font-weight:700;
+    height:50px;
+}
+.btn-gold:hover{
+    background:#d4aa17;
+}
+
+.small-text{
+    color:#aaa;
+    font-size:14px;
+}
+
+.success-msg{
+    display:none;
+    text-align:center;
+    color:#1db954;
+    margin-top:20px;
+    font-size:16px;
+}
+
+/* MOBILE */
+@media(max-width:900px){
+    .left{display:none;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- ===== TOP BAR ===== -->
+<header class="top-bar">
+    
+    <div class="brand-title">BOLLYCAST</div>
+</header>
+<i class="fa-solid fa-arrow-left back-btn" onclick="goBack()"></i>
+<!-- ===== MAIN ===== -->
+<div class="wrapper">
+
+    <!-- LEFT BRAND -->
+    <div class="left">
+        <div>
+            <h1>BOLLYCAST</h1>
+            <p>
+                Secure wallet withdrawal.<br>
+                Fast, transparent & verified payouts.
+            </p>
+        </div>
+    </div>
+
+    <!-- RIGHT FORM -->
+    <div class="right">
+        <div class="card">
+
+            <h3 class="text-center mb-2">Withdraw Funds</h3>
+            <p class="text-center small-text mb-4">
+                Transfer your earnings to bank or UPI
+            </p>
+
+            <div class="balance-box">
+                <span class="small-text">Available Balance</span>
+                <strong class="text-warning">₹58,500</strong>
+            </div>
+
+            <select class="form-select mb-3" id="method">
+                <option value="">Select Withdrawal Method</option>
+                <option>UPI</option>
+                <option>Bank Transfer</option>
+            </select>
+
+            <input type="text" class="form-control mb-3"
+                   id="account"
+                   placeholder="UPI ID / Bank Account Number">
+
+            <input type="number" class="form-control mb-4"
+                   id="amount"
+                   placeholder="Enter Amount (Min ₹500)">
+
+            <button class="btn btn-gold w-100" onclick="withdraw()">
+                Request Withdrawal
+            </button>
+
+            <div class="success-msg" id="successMsg">
+                ✅ Withdrawal request submitted successfully
+            </div>
+
+            <p class="text-center small-text mt-4">
+                Processing time: 24–48 hours
+            </p>
+
+        </div>
+    </div>
+
+</div>
+
+<script>
+function withdraw(){
+    const method = document.getElementById("method").value;
+    const account = document.getElementById("account").value.trim();
+    const amount = document.getElementById("amount").value;
+
+    if(!method || !account || !amount){
+        alert("Please fill all fields");
+        return;
+    }
+
+    if(amount < 500){
+        alert("Minimum withdrawal amount is ₹500");
+        return;
+    }
+
+    document.getElementById("successMsg").style.display="block";
+}
+
+function goBack(){
+    if(document.referrer !== ""){
+        history.back();
+    }else{
+        window.location.href="ayushprofile.html";
+    }
+}
+</script>
+
+</body>
+</html>

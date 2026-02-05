@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST | Settings</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link rel="stylesheet" href="responsive.css">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
+
+<style>
+body{
+    background:#0b0b0b;
+    color:#fff;
+}
+
+/* NAVBAR */
+.navbar{
+    background:#000;
+}
+.brand-text{
+    font-size:26px;
+    font-weight:700;
+    letter-spacing:2px;
+    color:#bdbdbd;
+}
+
+/* BACK */
+.back-strip{
+    background:#111;
+    padding:12px 25px;
+    border-bottom:1px solid #222;
+}
+.back-strip a{
+    color:#f5c518;
+    text-decoration:none;
+    font-weight:600;
+}
+
+/* HEADER */
+.settings-header{
+    background:linear-gradient(145deg,#161616,#1f1f1f);
+    border-radius:20px;
+    padding:30px;
+    margin-bottom:30px;
+}
+.settings-header h3{
+    margin-bottom:8px;
+}
+.settings-header p{
+    color:#aaa;
+}
+
+/* STATUS CHIPS */
+.chips span{
+    display:inline-block;
+    background:#222;
+    padding:6px 14px;
+    border-radius:20px;
+    font-size:13px;
+    margin-right:10px;
+}
+.chips i{
+    color:#f5c518;
+    margin-right:6px;
+}
+
+/* SECTION */
+.section{
+    margin-bottom:35px;
+}
+.section-title{
+    color:#f5c518;
+    font-weight:600;
+    margin-bottom:15px;
+}
+
+/* SETTING ROW */
+.setting-row{
+    background:#141414;
+    border-radius:16px;
+    padding:18px 22px;
+    margin-bottom:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    cursor:pointer;
+    transition:0.3s;
+}
+.setting-row:hover{
+    background:#1d1d1d;
+}
+
+.setting-left{
+    display:flex;
+    align-items:center;
+    gap:16px;
+}
+.setting-left i{
+    font-size:18px;
+    color:#f5c518;
+}
+
+.setting-desc{
+    font-size:14px;
+    color:#aaa;
+}
+
+/* TOGGLE */
+.toggle{
+    width:46px;
+    height:24px;
+    background:#333;
+    border-radius:20px;
+    position:relative;
+}
+.toggle::after{
+    content:"";
+    width:18px;
+    height:18px;
+    background:#aaa;
+    border-radius:50%;
+    position:absolute;
+    top:3px;
+    left:3px;
+}
+.toggle.active{
+    background:#f5c518;
+}
+.toggle.active::after{
+    left:25px;
+    background:#000;
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-dark">
+<div class="container-fluid">
+    <span class="navbar-brand ms-3 me-auto bollycast-text">
+  <span style="color:#fff;">BOLLY</span><span style="color:#f5c518;">CAST</span>
+</span>
+
+    <span class="text-muted">Settings</span>
+</div>
+</nav>
+
+<!-- BACK -->
+<div class="back-strip">
+    <a href="ayushprofile.html">
+        <i class="fa-solid fa-arrow-left me-2"></i>
+        Back to Profile
+    </a>
+</div>
+
+<div class="container mt-4 mb-5">
+
+<!-- HEADER -->
+<div class="settings-header">
+    <h3>Settings</h3>
+    <p>Manage your account, privacy, and notification preferences</p>
+
+    <div class="chips mt-3">
+        <span><i class="fa-solid fa-circle-check"></i> Verified</span>
+        <span><i class="fa-solid fa-crown"></i> Free Plan</span>
+        <span><i class="fa-solid fa-bell"></i> Alerts ON</span>
+    </div>
+</div>
+
+<!-- ACCOUNT -->
+<div class="section">
+    <div class="section-title">Account</div>
+
+    <div class="setting-row" onclick="window.location.href='ayushprofile.html'">
+        <div class="setting-left">
+            <i class="fa-solid fa-user"></i>
+            <div>
+                <strong>Account Settings</strong>
+                <div class="setting-desc">Edit personal details</div>
+            </div>
+        </div>
+        <i class="fa-solid fa-chevron-right"></i>
+    </div>
+
+    <div class="setting-row" onclick="window.location.href='ayushsubscription.html'">
+        <div class="setting-left">
+            <i class="fa-solid fa-crown"></i>
+            <div>
+                <strong>Subscription</strong>
+                <div class="setting-desc">Upgrade your visibility</div>
+            </div>
+        </div>
+        <i class="fa-solid fa-chevron-right"></i>
+    </div>
+</div>
+
+<!-- PRIVACY -->
+<div class="section">
+    <div class="section-title">Privacy & Security</div>
+
+    <div class="setting-row" onclick="window.location.href='ayushprivacy-security.html'">
+        <div class="setting-left">
+            <i class="fa-solid fa-lock"></i>
+            <div>
+                <strong>Privacy Controls</strong>
+                <div class="setting-desc">Password & data protection</div>
+            </div>
+        </div>
+        <i class="fa-solid fa-chevron-right"></i>
+    </div>
+
+    <div class="setting-row">
+        <div class="setting-left">
+            <i class="fa-solid fa-eye-slash"></i>
+            <div>
+                <strong>Hide Profile</strong>
+                <div class="setting-desc">Temporarily hide from producers</div>
+            </div>
+        </div>
+        <div class="toggle"></div>
+    </div>
+</div>
+
+<!-- NOTIFICATIONS -->
+<div class="section">
+    <div class="section-title">Notifications</div>
+
+    <div class="setting-row" onclick="window.location.href='ayushnotifications.html'">
+        <div class="setting-left">
+            <i class="fa-solid fa-bell"></i>
+            <div>
+                <strong>Notification Center</strong>
+                <div class="setting-desc">Auditions & updates</div>
+            </div>
+        </div>
+        <i class="fa-solid fa-chevron-right"></i>
+    </div>
+
+    <div class="setting-row">
+        <div class="setting-left">
+            <i class="fa-solid fa-envelope"></i>
+            <div>
+                <strong>Email Alerts</strong>
+                <div class="setting-desc">Casting & selection emails</div>
+            </div>
+        </div>
+        <div class="toggle active"></div>
+    </div>
+</div>
+
+</div>
+
+</body>
+</html>

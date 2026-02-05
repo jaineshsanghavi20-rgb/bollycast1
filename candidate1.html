@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST |Ayush Profile</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+    .back-arrow{
+    position:fixed;
+    top:30px;
+    left:30px;
+    font-size:22px;
+    color:#bbb;
+    cursor:pointer;
+    z-index:9999;
+}
+.back-arrow:hover{
+    color:#f5c518;
+}
+body{
+    background:#0b0b0b;
+    color:#fff;
+}
+.profile-card{
+    background:#161616;
+    border-radius:20px;
+    padding:30px;
+}
+.small-text{color:#aaa;font-size:14px;}
+.badge-skill{
+    background:#f5c518;
+    color:#000;
+    margin-right:6px;
+    margin-bottom:6px;
+}
+.btn-pay{
+    background:#f5c518;
+    color:#000;
+    font-weight:600;
+}
+.btn-accept{
+    background:#28a745;
+    color:#000;
+    font-weight:600;
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+</style>
+</head>
+
+<body>
+<i class="fa-solid fa-arrow-left back-arrow"
+   onclick="goBackToDashboard()"></i>
+
+
+<div class="profile-card">
+
+    <div class="row">
+        <div class="col-md-4 text-center">
+            <img src="ayush.jpg" class="img-fluid rounded mb-3"
+                 alt="Neha Verma">
+            <h4>Ayush</h4>
+            <p class="small-text">Actress • Movie</p>
+        </div>
+
+        <div class="col-md-8">
+
+            <h5>Biography</h5>
+            <p class="small-text">
+                Ayush is a professional actress with strong experience
+                in feature films, web series, and brand advertisements.
+                Known for expressive acting and screen presence.
+            </p>
+
+            <hr>
+
+            <p><strong>📍 City:</strong> Mumbai</p>
+            <p><strong>🎂 Age:</strong> 35</p>
+            <p><strong>🎬 Experience:</strong> 1+ Years</p>
+            <p><strong>💰 Expected Salary:</strong> ₹50,000</p>
+
+            <hr>
+
+            <h6>Skills</h6>
+            <span class="badge badge-skill">Acting</span>
+            <span class="badge badge-skill">Dance</span>
+            <span class="badge badge-skill">Expressions</span>
+            <span class="badge badge-skill">Camera Facing</span>
+
+        </div>
+    </div>
+
+    <hr>
+
+    <h5>Audition / Showreel Preview</h5>
+    <video class="w-100 rounded mt-2"
+           height="280"
+           controls
+           muted
+           preload="metadata"
+           src="videos/neha.mp4">
+    </video>
+
+    <hr>
+
+    <!-- ACTION BUTTONS -->
+    <div class="d-flex gap-3 mt-3">
+      <button id="payBtn" class="btn btn-pay" onclick="payCommission()">
+    Pay 30% Commission
+</button>
+
+
+        <button id="acceptBtn"
+                class="btn btn-accept d-none"
+                onclick="finalAccept()">
+            Accept Candidate
+        </button>
+    </div>
+
+</div>
+</div>
+
+<script>
+/* PAY COMMISSION */
+function payCommission(){
+    alert("30% Commission Paid Successfully to BOLLYCAST");
+
+    // ❌ hide Pay button
+    document.getElementById("payBtn").classList.add("d-none");
+
+    // ✅ show Accept button
+    document.getElementById("acceptBtn").classList.remove("d-none");
+}
+
+
+/* FINAL ACCEPT + NOTIFICATION */
+
+
+function finalAccept(){
+
+    const notification = {
+        title: "🎉 You Are Selected!",
+        message: "Congratulations Ayush! You have been selected for the Movie project.",
+        time: new Date().toLocaleString(),
+        read: false
+    };
+
+    let notifications =
+        JSON.parse(localStorage.getItem("ayushnotifications")) || [];
+
+    notifications.unshift(notification);
+    localStorage.setItem("ayushnotifications", JSON.stringify(notifications));
+
+    let candidates =
+        JSON.parse(localStorage.getItem("producerCandidates")) || [];
+
+    candidates = candidates.map(c => {
+        if (c.id === "ayush") {
+            c.final = "Accepted";
+        }
+        return c;
+    });
+
+    localStorage.setItem("producerCandidates", JSON.stringify(candidates));
+    localStorage.setItem("producerActiveTab", "accepted");
+
+    window.location.href = "producer-dashboard.html";
+}
+
+
+
+
+
+
+
+
+function goBackToDashboard(){
+    // ensure producer session remains active
+    sessionStorage.setItem("producerLoggedIn","true");
+    window.location.href = "producer-dashboard.html";
+}
+
+</script>
+
+</body>
+</html>

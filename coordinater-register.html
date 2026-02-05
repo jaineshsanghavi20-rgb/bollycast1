@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>BOLLYCAST | Coordinator Registration</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+<style>
+body{
+    background:#000;
+    color:#fff;
+    min-height:100vh;
+}
+.bollycast-text{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size:40px;
+    letter-spacing:4px;
+    color:#f5c518;   /* ya white */
+}
+
+/* BACK ARROW */
+.back-arrow{
+    position:fixed;
+    top:45px; /* ✅ balanced position */
+    left:30px;
+    font-size:22px;
+    color:#bbb;
+    cursor:pointer;
+    z-index:9999;
+}
+.back-arrow:hover{ color:#f5c518; }
+
+/* LAYOUT */
+.wrapper{
+    display:flex;
+    min-height:100vh;
+}
+
+/* LEFT IMAGE */
+.left{
+    flex:1.2;
+    background:
+    linear-gradient(to bottom,rgba(0,0,0,0.6),rgba(0,0,0,0.9)),
+    url("https://images.unsplash.com/photo-1521737604893-d14cc237f11d");
+    background-size:cover;
+    background-position:center;
+    display:flex;
+    align-items:center;
+    padding:70px;
+}
+
+.left h1{
+    font-size:52px;
+    letter-spacing:4px;
+    color:#f5c518;
+}
+.left p{
+    color:#ddd;
+    font-size:18px;
+    max-width:480px;
+}
+
+/* RIGHT */
+.right{
+    flex:1;
+    background:#0b0b0b;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* CARD */
+.card{
+    background:#141414;
+    border-radius:20px;
+    padding:40px;
+    width:100%;
+    max-width:460px;
+}
+
+/* INPUT */
+.form-control{
+    background:#0f0f0f;
+    border:1px solid #333;
+    color:#fff;
+    height:48px;
+}
+.form-control:focus{
+    border-color:#f5c518;
+    box-shadow:none;
+}
+
+/* UPLOAD BOX */
+.upload-box{
+    border:2px dashed #333;
+    border-radius:14px;
+    padding:18px;
+    text-align:center;
+    color:#aaa;
+    margin-bottom:15px;
+}
+.upload-box i{
+    font-size:26px;
+    color:#f5c518;
+}
+
+/* BUTTON */
+.btn-gold{
+    background:#f5c518;
+    color:#000;
+    font-weight:700;
+    height:50px;
+}
+.btn-gold:hover{ background:#d4aa17; }
+
+.small-text{
+    color:#aaa;
+    font-size:14px;
+}
+
+@media(max-width:900px){
+    .left{display:none;}
+}
+</style>
+</head>
+
+<body>
+
+<i class="fa-solid fa-arrow-left back-arrow" onclick="goBack()"></i>
+
+<div class="wrapper">
+
+<!-- LEFT -->
+<div class="left">
+    <div>
+        <h1>BOLLYCAST</h1>
+        <p>
+            Become a verified coordinator.<br>
+            Work with real productions.<br>
+            Zero fake casting. Full transparency.
+        </p>
+    </div>
+</div>
+
+<!-- RIGHT -->
+<div class="right">
+<div class="card">
+
+<h3 class="text-center mb-1">Coordinator Registration</h3>
+<p class="text-center small-text mb-4">
+Get verified & access premium casting projects
+</p>
+
+<!-- BASIC DETAILS -->
+<input type="text" class="form-control mb-3" placeholder="Full Name" required>
+<input type="email" class="form-control mb-3" placeholder="Email Address" required>
+<input type="tel" class="form-control mb-3" placeholder="Mobile Number" required>
+<input type="text" class="form-control mb-3" placeholder="City" required>
+<input type="password" class="form-control mb-4" placeholder="Create Password" required>
+
+<!-- DOCUMENT UPLOAD -->
+<h6 class="mb-2" style="color:#bbb;">Verification Documents</h6>
+
+<div class="upload-box">
+    <i class="fa-solid fa-id-card mb-2"></i>
+    <p class="mb-2">Upload Aadhaar / PAN</p>
+    <input type="file" class="form-control" accept="image/*,.pdf" required>
+</div>
+
+<div class="upload-box">
+    <i class="fa-solid fa-briefcase mb-2"></i>
+    <p class="mb-2">Industry Proof (Agreement / Visiting Card)</p>
+    <input type="file" class="form-control" accept="image/*,.pdf" required>
+</div>
+
+<button class="btn btn-gold w-100 mt-3">
+Submit & Apply for Verification
+</button>
+
+<p class="text-center small-text mt-3">
+Already registered?
+<a href="coordinater-login.html" style="color:#f5c518;">Login</a>
+</p>
+
+</div>
+</div>
+
+</div>
+
+<script>
+function goBack(){
+    window.location.href="index.html";
+}
+</script>
+
+</body>
+</html>
